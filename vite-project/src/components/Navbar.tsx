@@ -1,42 +1,71 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Home, Info, Hammer, Phone, HardHat } from 'lucide-react';
+import { Home, Info, Hammer, Phone, Menu, X, DollarSign } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const navLinks = [
+    { name: 'Home', path: '/', icon: <Home size={18} /> },
+    { name: 'About', path: '/about', icon: <Info size={18} /> },
+    { name: 'Services', path: '/services', icon: <Hammer size={18} /> },
+    { name: 'Pricing', path: '/pricing', icon: <DollarSign size={18} /> },
+    { name: 'Contact', path: '/contact', icon: <Phone size={18} /> },
+  ];
+
   return (
-    <nav className="bg-yellow-500 text-gray-900 shadow-md p-4 sticky top-0 z-50">
+    <nav className="bg-[#1b1c4b] text-white shadow-md p-4 sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold flex items-center gap-2">
-          <HardHat size={32} />
-          Aman Construction
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2">
+          <img src="/site-logo.jpg" alt="Aman Construction" className="h-12 w-auto object-contain rounded-sm" />
         </Link>
-        <ul className="flex space-x-6 font-semibold">
-          <li>
-            <Link to="/" className="hover:text-white transition flex items-center gap-1">
-              <Home size={18} /> Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className="hover:text-white transition flex items-center gap-1">
-              <Info size={18} /> About
-            </Link>
-          </li>
-          <li>
-            <Link to="/services" className="hover:text-white transition flex items-center gap-1">
-              <Hammer size={18} /> Services
-            </Link>
-          </li>
-          <li>
-            <Link to="/pricing" className="hover:text-white transition flex items-center gap-1">
-              Pricing
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="hover:text-white transition flex items-center gap-1">
-              <Phone size={18} /> Contact
-            </Link>
-          </li>
+
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex space-x-6 font-semibold">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <Link to={link.path} className="text-yellow-500 hover:text-yellow-400 transition flex items-center gap-1">
+                {link.icon} {link.name}
+              </Link>
+            </li>
+          ))}
         </ul>
+
+        {/* Mobile Menu Toggle Button */}
+        <button className="md:hidden text-yellow-500 hover:text-yellow-400 focus:outline-none" onClick={toggleMenu}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden overflow-hidden bg-[#161740] rounded-b-lg"
+          >
+            <ul className="flex flex-col p-4 space-y-4 font-semibold">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className="text-yellow-500 hover:text-yellow-400 transition flex items-center gap-3 p-2 rounded-md hover:bg-[#1b1c4b]"
+                  >
+                    {link.icon} {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
