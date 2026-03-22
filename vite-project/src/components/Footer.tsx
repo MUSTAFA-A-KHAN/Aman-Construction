@@ -1,9 +1,12 @@
+import logo from '../assets/logo.jpeg';
+
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-10 mt-16">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-          <h2 className="text-2xl font-bold text-yellow-500 mb-4 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-yellow-500 mb-4 flex items-center gap-3">
+            <img src={logo} alt="Aman Construction Logo" className="h-10 w-auto rounded-sm" />
             Aman Construction
           </h2>
           <p className="text-sm">
