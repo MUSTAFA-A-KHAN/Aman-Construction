@@ -1,6 +1,36 @@
+import { useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 
 const Contact = () => {
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('submitting');
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +44,29 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="bg-white p-8 rounded-lg shadow-xl">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a message</h2>
-            <form action="https://formspree.io/f/xovazlrl" method="POST" className="space-y-6">
+            {status === 'success' ? (
+              <div className="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+                <div className="flex">
+                  <div className="ml-3">
+                    <p className="text-sm text-green-700">
+                      Thank you for your message. We'll get back to you soon!
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setStatus('idle')}
+                  className="mt-4 text-sm font-medium text-green-700 hover:text-green-600"
+                >
+                  Send another message
+                </button>
+              </div>
+            ) : (
+            <form action="https://formspree.io/f/xovazlrl" method="POST" onSubmit={handleSubmit} className="space-y-6">
+              {status === 'error' && (
+                <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+                  <p className="text-sm text-red-700">Oops! There was a problem submitting your form. Please try again.</p>
+                </div>
+              )}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
                 <input type="text" id="name" name="name" required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border" placeholder="John Doe" />
@@ -35,10 +87,15 @@ const Contact = () => {
                 <textarea id="message" name="message" rows={4} required className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm p-3 border" placeholder="Please describe your project (e.g. Premium Package, Anandvilla location)"></textarea>
               </div>
 
-              <button type="submit" className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-900 bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition">
-                Submit Request
+              <button
+                type="submit"
+                disabled={status === 'submitting'}
+                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-900 bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === 'submitting' ? 'Submitting...' : 'Submit Request'}
               </button>
             </form>
+            )}
           </div>
 
           <div className="flex flex-col justify-center space-y-12 bg-gray-900 text-white p-12 rounded-lg shadow-xl relative overflow-hidden">
