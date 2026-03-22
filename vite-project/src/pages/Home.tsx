@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ShieldCheck, HardHat, PenTool, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import promoVideo from '../assets/promo-video.mp4';
 
 const fadeUp: any = {
   hidden: { opacity: 0, y: 50 },
@@ -182,7 +183,7 @@ const Home = () => {
           >
             <div className="w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white">
               <video
-                src="/promo-video.mp4"
+                src={promoVideo}
                 controls
                 autoPlay
                 muted
