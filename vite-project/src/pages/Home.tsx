@@ -154,6 +154,49 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Video Showcase Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-extrabold text-[#1b1c4b] sm:text-4xl">
+              Build Your Dream Home
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+              Watch how we turn visions into reality with exceptional craftsmanship.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={fadeUp}
+            className="flex justify-center"
+          >
+            <div className="w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+              <video
+                src="/promo-video.mp4"
+                controls
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-auto aspect-video object-cover"
+                poster="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 };
