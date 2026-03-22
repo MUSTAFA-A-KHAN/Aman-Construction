@@ -29,7 +29,7 @@ const Home = () => {
             animate={{ scale: 1, opacity: 0.4 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
             className="w-full h-full object-cover"
-            src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
             alt="Construction background"
           />
         </div>
@@ -143,7 +143,7 @@ const Home = () => {
             <motion.div variants={fadeUp} className="rounded-2xl overflow-hidden shadow-lg group relative cursor-pointer">
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors z-10 duration-300"></div>
               <img
-                src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
                 alt="Anandvilla Dewas Project 2"
                 className="w-full h-[400px] object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
               />
@@ -190,7 +190,7 @@ const Home = () => {
                 loop
                 playsInline
                 className="w-full h-auto aspect-video object-cover"
-                poster="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+                poster="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
               >
                 Your browser does not support the video tag.
               </video>
