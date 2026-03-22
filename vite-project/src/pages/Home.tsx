@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gray-900 text-white overflow-hidden">
+      <section className="relative bg-gray-900 text-white overflow-hidden min-h-screen flex items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">
           <motion.img
             initial={{ scale: 1.1, opacity: 0 }}
@@ -33,7 +33,7 @@ const Home = () => {
             alt="Construction background"
           />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-48 text-center">
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 lg:pt-32 lg:pb-48 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
