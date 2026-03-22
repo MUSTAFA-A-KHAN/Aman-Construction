@@ -1,4 +1,20 @@
 import { CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const fadeUp: any = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
 
 const Pricing = () => {
   const packages = [
@@ -57,18 +73,34 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="bg-white py-16">
+    <div className="bg-white py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="text-center mb-16"
+        >
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">Construction Packages</h1>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
             ALL PACKAGES USE THE SAME CORE CONSTRUCTION MATERIAL AND MAINTAIN SAME STRUCTURAL QUALITY. Prices are per sqft including GST.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
           {packages.map((pkg, idx) => (
-            <div key={idx} className={`rounded-xl shadow-xl overflow-hidden border-2 relative ${pkg.borderColor} ${pkg.color}`}>
+            <motion.div
+              key={idx}
+              variants={fadeUp}
+              whileHover={{ y: -10 }}
+              className={`rounded-xl shadow-xl overflow-hidden border-2 relative ${pkg.borderColor} ${pkg.color}`}
+            >
               {pkg.popular && (
                 <div className="absolute top-0 right-0 bg-yellow-500 text-gray-900 px-4 py-1 text-xs font-bold rounded-bl-lg uppercase tracking-wider">
                   Most Popular
@@ -97,13 +129,19 @@ const Pricing = () => {
                   Select Package
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-16 text-center text-gray-600">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center text-gray-600"
+        >
           <p>Note: Rates are based on basic quantity consideration and may change as per fluctuation of actual quantity. Material Price Including GST.</p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
