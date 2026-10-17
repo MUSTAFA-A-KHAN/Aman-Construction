@@ -2144,6 +2144,226 @@ h2 {
     font-size: 28px;
   }
 }
+/* Client-led galleries: photographs and proposed designs stay distinct. */
+.project-card > .project-client {
+  color: var(--navy);
+  font-weight: 650;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.portfolio {
+  padding-block: 42px 80px;
+}
+.portfolio-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 38px;
+}
+.portfolio-tools > p {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.portfolio-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.portfolio-filters button {
+  min-height: 44px;
+  padding: 11px 18px;
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid #cfcec5;
+  font-size: 12px;
+  transition:
+    background 200ms,
+    color 200ms;
+}
+.portfolio-filters button[aria-pressed="true"] {
+  background: var(--navy);
+  color: white;
+  border-color: var(--navy);
+}
+.portfolio-filters button:hover:not([aria-pressed="true"]) {
+  background: #eae8de;
+}
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px 40px;
+  align-items: start;
+}
+.gallery-project {
+  min-width: 0;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.gallery-heading {
+  padding-block: 0 21px;
+}
+.gallery-heading .eyebrow {
+  color: #71664f;
+  font-size: 9px;
+  margin-bottom: 12px;
+}
+.gallery-heading h2 {
+  font-size: 32px;
+}
+.gallery-project-name {
+  font-size: 13px;
+  margin-top: 9px;
+  color: var(--muted);
+}
+.gallery-location {
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+}
+.gallery-image {
+  position: relative;
+  background: #e8e6de;
+  aspect-ratio: 4 / 3;
+}
+.gallery-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.gallery-expand {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  color: white;
+  background: var(--navy);
+  border: 1px solid #ffffff66;
+}
+.gallery-expand:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+.gallery-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 58px;
+}
+.gallery-toolbar .image-note {
+  margin: 0;
+  font-size: 11px;
+}
+.gallery-toolbar .image-note span {
+  display: inline-block;
+  padding-left: 12px;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+}
+.gallery-arrows {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.gallery-arrows button {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: var(--navy);
+  border: 1px solid var(--line);
+  transition: background 200ms;
+}
+.gallery-arrows button:hover {
+  background: var(--gold);
+}
+.gallery-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 15px;
+}
+.gallery-thumbnails button {
+  padding: 3px;
+  border: 2px solid transparent;
+  background: transparent;
+}
+.gallery-thumbnails button[aria-pressed="true"] {
+  border-color: #956c18;
+}
+.gallery-thumbnails button:hover {
+  border-color: var(--navy);
+}
+.gallery-thumbnails img {
+  width: 65px;
+  height: 48px;
+  object-fit: cover;
+}
+.gallery-description {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 8px;
+}
+.gallery-design-note {
+  font-size: 11px;
+  color: #725d2e;
+  margin-top: 9px;
+}
+.gallery-project > .text-link {
+  font-size: 12px;
+  margin-top: 12px;
+}
+.portfolio-note {
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 750px;
+  margin-top: 40px;
+}
+@media (max-width: 760px) {
+  .portfolio {
+    padding-block: 28px 55px;
+  }
+  .portfolio-tools {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  .portfolio-filters {
+    gap: 7px;
+  }
+  .portfolio-filters button {
+    padding-inline: 11px;
+    font-size: 11px;
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .gallery-heading h2 {
+    font-size: 29px;
+  }
+  .gallery-heading {
+    padding-bottom: 18px;
+  }
+  .gallery-toolbar .image-note {
+    font-size: 10px;
+  }
+  .gallery-toolbar .image-note span {
+    padding-left: 7px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

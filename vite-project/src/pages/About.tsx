@@ -22,8 +22,8 @@ export default function About() {
           <figure data-reveal>
             <img
               src={projects[0].image}
-              width="478"
-              height="349"
+              width={projects[0].width}
+              height={projects[0].height}
               alt={projects[0].alt}
               loading="lazy"
             />

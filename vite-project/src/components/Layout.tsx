@@ -6,7 +6,7 @@ const titles: Record<string, string> = {
   "/": "AMAN Construction | Thoughtfully built. Built around you.",
   "/about": "About us | AMAN Construction",
   "/services": "Construction services | AMAN Construction",
-  "/projects": "Our projects in Dewas | AMAN Construction",
+  "/projects": "Our client projects in Dewas & Indore | AMAN Construction",
   "/pricing": "Construction packages | AMAN Construction",
   "/contact": "Get a quote | AMAN Construction",
 };

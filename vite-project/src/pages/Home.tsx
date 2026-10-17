@@ -10,7 +10,7 @@ import {
   Check,
   MapPin,
 } from "lucide-react";
-import { projects, process } from "../data";
+import { projects, featuredProjects, process } from "../data";
 import ContactBand from "../components/ContactBand";
 
 const services = [
@@ -83,7 +83,9 @@ export default function Home() {
                 <span className="photo-dot" />
                 <span>
                   ANANDVILLA RESIDENCE
-                  <small>Actual site photograph · Dewas</small>
+                  <small>
+                    {featured.client} · Actual site photograph · Dewas
+                  </small>
                 </span>
                 <Link
                   to="/projects#anandvilla-residence"
@@ -183,7 +185,7 @@ export default function Home() {
             </div>
           </div>
           <div className="project-grid">
-            {projects.map((project) => (
+            {featuredProjects.map((project) => (
               <Link
                 to={`/projects#${project.id}`}
                 key={project.id}
@@ -193,7 +195,7 @@ export default function Home() {
                 <div className="project-card-image">
                   <img
                     src={project.image}
-                    srcSet={`${project.smallImage} 320w, ${project.image} 478w`}
+                    srcSet={`${project.smallImage} ${project.smallWidth}w, ${project.image} ${project.width}w`}
                     sizes="(max-width: 700px) 90vw, 44vw"
                     alt={project.alt}
                     width={project.width}
@@ -211,6 +213,7 @@ export default function Home() {
                   <span>{project.number}</span>
                 </div>
                 <h3>{project.title}</h3>
+                <p className="project-client">Client · {project.client}</p>
                 <p>
                   <MapPin size={14} aria-hidden="true" /> {project.location}
                 </p>

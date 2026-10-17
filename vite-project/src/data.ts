@@ -1,9 +1,4 @@
-import residence from "./assets/projects/anandvilla-residence.webp";
-import residenceSmall from "./assets/projects/anandvilla-residence-small.webp";
-import residenceElevation from "./assets/projects/anandvilla-residence-elevation.webp";
-import building from "./assets/projects/anandvilla-building.webp";
-import buildingSmall from "./assets/projects/anandvilla-building-small.webp";
-import buildingElevation from "./assets/projects/anandvilla-building-elevation.webp";
+export { projects, featuredProjects } from "./project-data";
 
 // Verified against the supplied company brochure; see ASSET-SOURCES.md.
 export const business = {
@@ -16,40 +11,6 @@ export const business = {
   address: "69, Ekta Nagar, Ujjain Road, Dewas, Madhya Pradesh",
   formEndpoint: "https://formspree.io/f/xovazlrl",
 };
-export const projects = [
-  {
-    id: "anandvilla-residence",
-    number: "01",
-    title: "Anandvilla Residence",
-    location: "Anandvilla, Dewas",
-    client: "Rajat Agrawal",
-    type: "Residential construction",
-    image: residence,
-    smallImage: residenceSmall,
-    elevation: residenceElevation,
-    width: 478,
-    height: 349,
-    alt: "Actual site photograph of the Anandvilla residence with brickwork and concrete structure in progress",
-    description:
-      "A residence taking shape from its structural framework to its architectural details. Explore the site photograph alongside the proposed front elevation.",
-  },
-  {
-    id: "anandvilla-building",
-    number: "02",
-    title: "Anandvilla Residential Building",
-    location: "Anandvilla, Dewas",
-    client: "Neeraj Vhayvergy",
-    type: "Residential construction",
-    image: building,
-    smallImage: buildingSmall,
-    elevation: buildingElevation,
-    width: 478,
-    height: 325,
-    alt: "Actual site photograph of a multi-storey residential concrete and brick structure at Anandvilla",
-    description:
-      "A multi-storey residential structure at Anandvilla. The site photograph shows the concrete frame and masonry; the proposed elevation illustrates the design intent.",
-  },
-];
 export const process = [
   {
     title: "Tell us your vision",

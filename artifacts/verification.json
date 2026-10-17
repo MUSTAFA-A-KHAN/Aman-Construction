@@ -184,7 +184,7 @@
     }
   ],
   "interactions": [
-    "Mobile CTA visible, menu open/close/Escape/focus, route selection, gallery switch, project enquiry prefill",
+    "Mobile CTA visible, menu open/close/Escape/focus, route selection, gallery type/next/previous, 11 client names, 7 site-photo and 4 design-only project filters, project enquiry prefill",
     "Package prefill, required/email/phone validation, pending submit, HTTP rejection, network failure, unconfirmed response, confirmed success, retry/reset",
     "Video loads on demand and media metadata is playable",
     "Reduced motion, keyboard skip link, verified phone/email/WhatsApp and internal links"

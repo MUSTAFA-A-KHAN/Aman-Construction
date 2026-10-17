@@ -1,1 +1,5 @@
 logo_extract*
+
+# Source-only WhatsApp export and private review material, not website assets.
+/WhatsApp Chat with Shoukat.zip
+/artifacts/source-review/
