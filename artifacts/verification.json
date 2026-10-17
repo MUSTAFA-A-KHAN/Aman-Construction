@@ -1,0 +1,197 @@
+{
+  "layouts": [
+    {
+      "width": 320,
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "route": "/about",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "route": "/services",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "route": "/projects",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "route": "/pricing",
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "route": "/contact",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/about",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/services",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/projects",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/pricing",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "route": "/contact",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "/about",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "/services",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "/projects",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "/pricing",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "route": "/contact",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/about",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/services",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/projects",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/pricing",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "route": "/contact",
+      "overflow": false
+    }
+  ],
+  "accessibility": [
+    {
+      "width": 390,
+      "route": "/",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "route": "/about",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "route": "/services",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "route": "/projects",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "route": "/pricing",
+      "violations": []
+    },
+    {
+      "width": 390,
+      "route": "/contact",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/about",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/services",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/projects",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/pricing",
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "route": "/contact",
+      "violations": []
+    }
+  ],
+  "interactions": [
+    "Mobile CTA visible, menu open/close/Escape/focus, route selection, gallery switch, project enquiry prefill",
+    "Package prefill, required/email/phone validation, pending submit, HTTP rejection, network failure, unconfirmed response, confirmed success, retry/reset",
+    "Video loads on demand and media metadata is playable",
+    "Reduced motion, keyboard skip link, verified phone/email/WhatsApp and internal links"
+  ],
+  "resources": {
+    "externalImageRequests": [],
+    "videoDeferredUntilInteraction": true
+  },
+  "errors": []
+}

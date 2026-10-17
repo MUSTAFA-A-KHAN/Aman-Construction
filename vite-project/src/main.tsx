@@ -1,47 +1,49 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createHashRouter, RouterProvider } from 'react-router-dom';
-import './style.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createHashRouter, RouterProvider } from "react-router-dom";
+import "./style.css";
 
 // Layouts and Pages
-import Layout from './components/Layout';
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Pricing from './pages/Pricing';
-import Contact from './pages/Contact';
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Pricing from "./pages/Pricing";
+import Contact from "./pages/Contact";
+import Projects from "./pages/Projects";
 
 const router = createHashRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
+      { path: "/projects", element: <Projects /> },
       {
-        path: '/',
+        path: "/",
         element: <Home />,
       },
       {
-        path: '/about',
+        path: "/about",
         element: <About />,
       },
       {
-        path: '/services',
+        path: "/services",
         element: <Services />,
       },
       {
-        path: '/pricing',
+        path: "/pricing",
         element: <Pricing />,
       },
       {
-        path: '/contact',
+        path: "/contact",
         element: <Contact />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('app') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

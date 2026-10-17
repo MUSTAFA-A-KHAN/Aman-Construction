@@ -1,40 +1,55 @@
-import logo from '../assets/logo.jpeg';
-
-const Footer = () => {
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
+import Brand from "./Brand";
+import { business } from "../data";
+export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-10 mt-16">
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <h2 className="text-2xl font-bold text-yellow-500 mb-4 flex items-center gap-3">
-            <img src={logo} alt="Aman Construction Logo" className="h-10 w-auto rounded-sm" />
-            Aman Construction
-          </h2>
-          <p className="text-sm">
-            Building excellence with trust and transparency. We deliver quality structural projects tailored to your needs.
+    <footer className="site-footer">
+      <div className="container footer-grid">
+        <div className="footer-brand">
+          <Brand />
+          <p>
+            Thoughtfully planned.
+            <br />
+            Carefully built. Uniquely yours.
           </p>
+          <span className="footer-location">DEWAS, MADHYA PRADESH</span>
         </div>
-
         <div>
-          <h3 className="text-xl font-bold text-white mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#/" className="hover:text-yellow-500 transition">Home</a></li>
-            <li><a href="#/services" className="hover:text-yellow-500 transition">Services</a></li>
-            <li><a href="#/pricing" className="hover:text-yellow-500 transition">Pricing Packages</a></li>
-            <li><a href="#/contact" className="hover:text-yellow-500 transition">Contact Us</a></li>
-          </ul>
+          <h2>Explore</h2>
+          <nav aria-label="Footer navigation">
+            <Link to="/about">About us</Link>
+            <Link to="/services">Our services</Link>
+            <Link to="/projects">Our projects</Link>
+            <Link to="/pricing">Construction packages</Link>
+          </nav>
         </div>
-
         <div>
-          <h3 className="text-xl font-bold text-white mb-4">Contact</h3>
-          <p className="text-sm mb-2"><strong>Location:</strong> Anandvilla Dewas</p>
-          <p className="text-sm mb-2"><strong>Clients:</strong> Rajat Agrawal, Neeraj Vhayvergy</p>
+          <h2>Let’s talk</h2>
+          <a href={business.phoneHref}>{business.phone}</a>
+          <a href={business.secondPhoneHref}>{business.secondPhone}</a>
+          <a className="footer-email" href={`mailto:${business.email}`}>
+            {business.email}
+          </a>
+          <a href={business.whatsapp} target="_blank" rel="noopener noreferrer">
+            WhatsApp us <ArrowUpRight size={14} aria-hidden="true" />
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
+        </div>
+        <div>
+          <h2>Find us</h2>
+          <address>{business.address}</address>
+          <Link className="footer-cta" to="/contact">
+            Build with AMAN <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
         </div>
       </div>
-      <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm">
-        <p>&copy; {new Date().getFullYear()} Aman Construction. All rights reserved.</p>
+      <div className="container footer-bottom">
+        <span>
+          © {new Date().getFullYear()} AMAN Construction. All rights reserved.
+        </span>
+        <span>Built on trust. Built for you.</span>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

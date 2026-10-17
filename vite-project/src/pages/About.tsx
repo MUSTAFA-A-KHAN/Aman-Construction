@@ -1,82 +1,119 @@
-import { motion } from 'framer-motion';
-
-const fadeUp: any = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const About = () => {
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight, Play, Check } from "lucide-react";
+import { projects } from "../data";
+import promoVideo from "../assets/promo-video.mp4";
+import PageHeading from "../components/PageHeading";
+import ContactBand from "../components/ContactBand";
+export default function About() {
+  const [showVideo, setShowVideo] = useState(false);
   return (
-    <div className="bg-gray-50 min-h-screen py-16 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">About Us</h1>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Aman Construction is dedicated to providing structural excellence and transparent business practices for all our clients.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
-        >
-          <motion.div variants={fadeUp}>
+    <>
+      <PageHeading
+        eyebrow="THIS IS AMAN CONSTRUCTION"
+        title="A home deserves thoughtful hands."
+      >
+        We bring planning, construction, and finishing together with a simple
+        focus: quality in the structure, clarity in the process, and care in the
+        details.
+      </PageHeading>
+      <section className="section about-story">
+        <div className="container about-grid">
+          <figure data-reveal>
             <img
-              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
-              alt="Construction site"
-              className="rounded-lg shadow-xl"
+              src={projects[0].image}
+              width="478"
+              height="349"
+              alt={projects[0].alt}
+              loading="lazy"
             />
-          </motion.div>
-          <motion.div variants={staggerContainer}>
-            <motion.h2 variants={fadeUp} className="text-3xl font-bold text-gray-900 mb-6">Our Commitment</motion.h2>
-            <motion.p variants={fadeUp} className="text-gray-600 mb-4 text-lg">
-              At Aman Construction, we believe that <strong>"ALL PACKAGES USE THE SAME CORE CONSTRUCTION MATERIAL AND MAINTAIN SAME STRUCTURAL QUALITY"</strong>.
-              Our goal is to deliver top-tier construction projects to you without compromising on the foundation.
-            </motion.p>
-            <motion.p variants={fadeUp} className="text-gray-600 text-lg mb-8">
-              We employ strict timelines, rigorous quality checks, and top branded materials to ensure the longevity and safety of your structure.
-            </motion.p>
-
-            <motion.h3 variants={fadeUp} className="text-2xl font-bold text-gray-900 mb-4">Our Projects</motion.h3>
-            <motion.ul variants={staggerContainer} className="space-y-4">
-               <motion.li variants={fadeUp} className="flex items-start">
-                 <span className="h-6 w-6 rounded-full bg-yellow-500 text-white flex items-center justify-center font-bold mr-3 mt-1">1</span>
-                 <div>
-                   <h4 className="font-bold text-gray-900 text-lg">Location: Anandvilla Dewas</h4>
-                   <p className="text-gray-600">Client — Rajat Agrawal</p>
-                 </div>
-               </motion.li>
-               <motion.li variants={fadeUp} className="flex items-start">
-                 <span className="h-6 w-6 rounded-full bg-yellow-500 text-white flex items-center justify-center font-bold mr-3 mt-1">2</span>
-                 <div>
-                   <h4 className="font-bold text-gray-900 text-lg">Location: Anandvilla Dewas</h4>
-                   <p className="text-gray-600">Client — Neeraj Vhayvergy</p>
-                 </div>
-               </motion.li>
-            </motion.ul>
-          </motion.div>
-        </motion.div>
-      </div>
-    </div>
+            <figcaption>
+              On site at Anandvilla, Dewas · Actual project photograph
+            </figcaption>
+          </figure>
+          <div data-reveal>
+            <p className="eyebrow">OUR COMMITMENT</p>
+            <h2>
+              Built on trust.
+              <br />
+              From the ground up.
+            </h2>
+            <p>
+              Based in Dewas, AMAN Construction helps bring residential projects
+              from drawings to construction and finishing. Our packages make
+              material choices and allowances easier to understand.
+            </p>
+            <p>
+              Whether you choose Premium, Style, or Luxury, our commitment to
+              the core stays the same: the same construction materials and
+              structural quality across every package.
+            </p>
+            <ul className="check-list">
+              {[
+                "Structural design by a licensed engineer",
+                "Tested materials and civil engineer supervision",
+                "Progress updates and milestone-based payments",
+              ].map((item) => (
+                <li key={item}>
+                  <Check size={18} aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Link to="/projects" className="text-link">
+              Explore our work <ArrowUpRight size={18} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section className="section film-section" id="film" tabIndex={-1}>
+        <div className="container film-grid">
+          <div>
+            <p className="eyebrow">A CLOSER LOOK</p>
+            <h2>
+              Understand
+              <br />
+              what goes into
+              <br />
+              your home.
+            </h2>
+            <p>
+              Our construction guide introduces the materials and considerations
+              behind a home, in Hindi.
+            </p>
+          </div>
+          <div className="film-player">
+            {showVideo ? (
+              <video
+                src={promoVideo}
+                controls
+                playsInline
+                preload="metadata"
+                aria-label="AMAN Construction guide in Hindi"
+              />
+            ) : (
+              <button
+                type="button"
+                className="film-launch"
+                onClick={() => setShowVideo(true)}
+              >
+                <span className="film-play">
+                  <Play size={28} aria-hidden="true" />
+                </span>
+                <span>
+                  Watch our construction guide
+                  <small>In Hindi · approximately 7 minutes</small>
+                </span>
+                <ArrowUpRight size={24} aria-hidden="true" />
+              </button>
+            )}
+            <p className="image-note">
+              Company guide · plays only when you choose
+            </p>
+          </div>
+        </div>
+      </section>
+      <ContactBand />
+    </>
   );
-};
-
-export default About;
+}

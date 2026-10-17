@@ -1,74 +1,105 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Home, Info, Hammer, Phone, Menu, X, DollarSign } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import logo from '../assets/logo.jpeg';
-
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-
-  const navLinks = [
-    { name: 'Home', path: '/', icon: <Home size={18} /> },
-    { name: 'About', path: '/about', icon: <Info size={18} /> },
-    { name: 'Services', path: '/services', icon: <Hammer size={18} /> },
-    { name: 'Pricing', path: '/pricing', icon: <DollarSign size={18} /> },
-    { name: 'Contact', path: '/contact', icon: <Phone size={18} /> },
-  ];
-
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import Brand from "./Brand";
+const links = [
+  ["Home", "/"],
+  ["About us", "/about"],
+  ["Services", "/services"],
+  ["Projects", "/projects"],
+  ["Packages", "/pricing"],
+  ["Contact", "/contact"],
+];
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const toggle = useRef<HTMLButtonElement>(null);
+  const header = useRef<HTMLElement>(null);
+  const { pathname } = useLocation();
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggle.current?.focus();
+      }
+    };
+    const closeOutside = (event: PointerEvent) => {
+      if (!header.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const desktop = window.matchMedia("(min-width: 1040px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener("pointerdown", closeOutside);
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("pointerdown", closeOutside);
+      desktop.removeEventListener("change", closeOnDesktop);
+    };
+  }, [open]);
   return (
-    <nav className="bg-[#1b1c4b] text-white shadow-md p-4 sticky top-0 z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Aman Construction Logo" className="h-12 w-auto object-contain rounded-sm" />
-        </Link>
-
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6 font-semibold">
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <Link to={link.path} className="text-yellow-500 hover:text-yellow-400 transition flex items-center gap-1">
-                {link.icon} {link.name}
-              </Link>
-            </li>
+    <header
+      className="site-header"
+      ref={header}
+      onBlur={(event) => {
+        if (
+          event.relatedTarget &&
+          !event.currentTarget.contains(event.relatedTarget)
+        )
+          setOpen(false);
+      }}
+    >
+      <div className="container header-inner">
+        <Brand />
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {links.map(([name, path]) => (
+            <NavLink key={path} to={path} end={path === "/"}>
+              {name}
+            </NavLink>
           ))}
-        </ul>
-
-        {/* Mobile Menu Toggle Button */}
-        <button className="md:hidden text-yellow-500 hover:text-yellow-400 focus:outline-none" onClick={toggleMenu}>
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Dropdown */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden bg-[#161740] rounded-b-lg"
+        </nav>
+        <div className="header-actions">
+          <Link className="button button-gold header-quote" to="/contact">
+            Get a Quote <ArrowUpRight size={17} aria-hidden="true" />
+          </Link>
+          <button
+            className="menu-toggle"
+            ref={toggle}
+            type="button"
+            aria-label={open ? "Close navigation" : "Open navigation"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+            onClick={() => setOpen((value) => !value)}
           >
-            <ul className="flex flex-col p-4 space-y-4 font-semibold">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className="text-yellow-500 hover:text-yellow-400 transition flex items-center gap-3 p-2 rounded-md hover:bg-[#1b1c4b]"
-                  >
-                    {link.icon} {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+            {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          </button>
+        </div>
+      </div>
+      <nav
+        id="mobile-navigation"
+        className="mobile-nav"
+        aria-label="Mobile navigation"
+        hidden={!open}
+      >
+        <div className="container">
+          {links.map(([name, path]) => (
+            <NavLink
+              key={path}
+              to={path}
+              end={path === "/"}
+              onClick={() => setOpen(false)}
+            >
+              {name}
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </NavLink>
+          ))}
+        </div>
+      </nav>
+    </header>
   );
-};
-
-export default Navbar;
+}
